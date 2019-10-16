@@ -36,7 +36,7 @@ publishing {
             }
             pom {
                 name = 'Graylog Query Builder'
-                description = 'Graylog query builder'
+                description = 'Graylog query builder module'
                 url = 'https://github.com/debugrammer/graylog-query-builder'
                 licenses {
                     license {
