@@ -1,1 +1,1 @@
-# graylog-query-builder
+# Graylog Query Builder

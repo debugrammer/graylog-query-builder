@@ -1,11 +1,75 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'signing'
 }
 
-version '1.0.0'
+group = 'com.joonsang.graylog'
+version = '1.0.0-beta.0'
 
 sourceCompatibility = 11
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier.set("sources")
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier.set("javadoc")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'graylog-query-builder'
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'Graylog Query Builder'
+                description = 'Graylog query builder'
+                url = 'https://github.com/debugrammer/graylog-query-builder'
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'debugrammer'
+                        name = 'Joonsang Park'
+                        email = 'debugrammer@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/debugrammer/graylog-query-builder.git'
+                    developerConnection = 'scm:git:ssh:git@github.com:debugrammer/graylog-query-builder.git'
+                    url = 'https://github.com/debugrammer/graylog-query-builder'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
 
 repositories {
     mavenCentral()

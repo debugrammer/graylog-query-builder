@@ -1,4 +1,4 @@
-package com.debugrammer.graylog;
+package com.joonsang.graylog;
 
 import org.apache.commons.lang3.StringUtils;
 
