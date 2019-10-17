@@ -44,7 +44,7 @@ type:"ssh" AND _exists_:id AND ( source:(dog.org OR cat.org) ) AND http_response
 #### 1.1. Term
 Messages that include the term or phrase.
 
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .term("ssh")
@@ -59,7 +59,7 @@ GraylogQuery.builder()
 Messages that include similar term or phrase.
 
 ##### 1.2.1. Fuzziness with default distance
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .fuzzTerm("ssh logni")
@@ -71,7 +71,7 @@ GraylogQuery.builder()
 ```
 
 ##### 1.2.2. Fuzziness with custom distance
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .fuzzTerm("ssh logni", 1)
@@ -85,7 +85,7 @@ GraylogQuery.builder()
 #### 1.3. Exists
 Messages that have the field.
 
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .exists("type")
@@ -101,7 +101,7 @@ _exists_:type
 ##### 1.4.1. Field (String)
 Messages where the field includes the term or phrase.
 
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .field("type", "ssh")
@@ -115,7 +115,7 @@ type:"ssh"
 ##### 1.4.2. Field (Numeric)
 Messages where the field includes the number.
 
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .field("http_response_code", 500)
@@ -129,7 +129,7 @@ http_response_code:500
 ##### 1.4.3. One side unbounded range query
 Messages where the field satisfies the condition.
 
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .field("http_response_code", ">", 500)
@@ -144,7 +144,7 @@ http_response_code:>500
 Messages where the field includes similar term or phrase.
 
 ##### 1.5.1. Fuzziness with default distance
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .fuzzField("source", "example.org")
@@ -156,7 +156,7 @@ source:"example.org"~
 ```
 
 ##### 1.5.2. Fuzziness with custom distance
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .fuzzField("source", "example.org", 1)
@@ -172,7 +172,7 @@ source:"example.org"~1
 ##### 1.6.1. Range query
 Ranges in square brackets are inclusive, curly brackets are exclusive and can even be combined.
 
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .range("bytes", "{", 0, 64, "]")
@@ -186,7 +186,7 @@ bytes:{0 TO 64]
 ##### 1.6.2. Date range query
 The dates needs to be UTC
 
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .range("timestamp", "[", "2019-07-23 09:53:08.175", "2019-07-23 09:53:08.575", "]")
@@ -200,7 +200,7 @@ timestamp:["2019-07-23 09:53:08.175" TO "2019-07-23 09:53:08.575"]
 #### 1.6. Raw
 Raw query.
 
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .raw("/ethernet[0-9]+/") = /ethernet[0-9]+/
@@ -214,7 +214,7 @@ GraylogQuery.builder()
 ### 2. Conjunctions
 
 #### 2.1. And
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .term("ssh")
@@ -227,7 +227,7 @@ GraylogQuery.builder()
 ```
 
 #### 2.2. Or
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .term("ssh")
@@ -240,7 +240,7 @@ GraylogQuery.builder()
 ```
 
 #### 2.3. Not
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .not().exists("type")
@@ -252,7 +252,7 @@ NOT _exists_:type
 ```
 
 ### 3. Parentheses
-**Usage**
+**Usage:**
 ```
 GraylogQuery.builder()
     .exists("type")
@@ -271,7 +271,7 @@ _exists_:type AND ( "ssh" OR "login" )
 Sometimes you might want to compose dynamic queries by condition.
 
 ### 1. Prepend Graylog query
-**Usage**
+**Usage:**
 ```
 GraylogQuery query = GraylogQuery.builder()
     .not().exists("type");
@@ -286,7 +286,7 @@ NOT _exists_:type AND "ssh"
 ```
 
 ### 2. Append Graylog query
-**Usage**
+**Usage:**
 ```
 GraylogQuery query = GraylogQuery.builder()
     .or().exists("type");
