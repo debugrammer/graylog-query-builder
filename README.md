@@ -1,6 +1,7 @@
 # Graylog Query Builder
 > [Graylog Query](https://docs.graylog.org/en/latest/pages/queries.html) Builder especially useful for working with [Graylog REST API](https://docs.graylog.org/en/latest/pages/configuration/rest_api.html).
 
+[![Build Status](https://travis-ci.org/debugrammer/graylog-query-builder.svg?branch=master)](https://travis-ci.org/debugrammer/graylog-query-builder)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.joonsang.graylog/graylog-query-builder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.joonsang.graylog/graylog-query-builder)
 [![Javadoc](https://javadoc-badge.appspot.com/com.joonsang.graylog/graylog-query-builder.svg?label=javadoc)](https://javadoc-badge.appspot.com/com.joonsang.graylog/graylog-query-builder)
 
