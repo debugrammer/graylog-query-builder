@@ -1,6 +1,26 @@
 # Graylog Query Builder
 > [Graylog Query](https://docs.graylog.org/en/latest/pages/queries.html) Builder especially useful for working with [Graylog REST API](https://docs.graylog.org/en/latest/pages/configuration/rest_api.html).
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.joonsang.graylog/graylog-query-builder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.joonsang.graylog/graylog-query-builder)
+[![Javadoc](https://javadoc-badge.appspot.com/com.joonsang.graylog/graylog-query-builder.svg?label=javadoc)](https://javadoc-badge.appspot.com/com.joonsang.graylog/graylog-query-builder)
+
+## Getting Started
+Graylog Query Builder is available at the Central Maven Repository.
+
+**Maven**
+```
+<dependency>
+  <groupId>com.joonsang.graylog</groupId>
+  <artifactId>graylog-query-builder</artifactId>
+  <version>1.0.0-beta.0</version>
+</dependency>
+```
+
+**Gradle**
+```
+implementation group: 'com.joonsang.graylog', name: 'graylog-query-builder', version: '1.0.0-beta.0'
+```
+
 ## Usage
 ```
 GraylogQuery.builder()
@@ -245,4 +265,38 @@ GraylogQuery.builder()
 **Output:**
 ```
 _exists_:type AND ( "ssh" OR "login" )
+```
+
+## Advanced Usage
+Sometimes you might want to compose dynamic queries by condition.
+
+### 1. Prepend Graylog query
+**Usage**
+```
+GraylogQuery query = GraylogQuery.builder()
+    .not().exists("type");
+
+GraylogQuery.builder(query)
+    .and().term("ssh")
+    .build();
+```
+**Output:**
+```
+NOT _exists_:type AND "ssh"
+```
+
+### 2. Append Graylog query
+**Usage**
+```
+GraylogQuery query = GraylogQuery.builder()
+    .or().exists("type");
+
+GraylogQuery.builder()
+    .term("ssh")
+    .append(query)
+    .build();
+```
+**Output:**
+```
+"ssh" OR _exists_:type
 ```
