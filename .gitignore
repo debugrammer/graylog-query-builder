@@ -17,3 +17,9 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Secret key files ###
+/secret/
+
+### Gradle secret properties ###
+gradle.properties

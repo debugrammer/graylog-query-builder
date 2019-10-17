@@ -61,12 +61,8 @@ public class GraylogQuery {
 
     /**
      * Messages that include the term or phrase
-     *
-     * <pre>
-     *   term("ssh") = "ssh"
-     * </pre>
-     *
      * @param value term or phrase
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery term(String value) {
@@ -83,13 +79,9 @@ public class GraylogQuery {
 
     /**
      * Fuzziness with default distance
-     * Messages that include similar term or phrase
-     *
-     * <pre>
-     *   fuzzTerm("ssh logni") = "ssh logni"~
-     * </pre>
-     *
+     * : Messages that include similar term or phrase
      * @param value term or phrase
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery fuzzTerm(String value) {
@@ -106,14 +98,10 @@ public class GraylogQuery {
 
     /**
      * Fuzziness with custom distance
-     * Messages that include similar term or phrase
-     *
-     * <pre>
-     *   fuzzTerm("ssh logni", 1) = "ssh logni"~1
-     * </pre>
-     *
+     * : Messages that include similar term or phrase
      * @param value term or phrase
      * @param distance Damerau-Levenshtein distance
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery fuzzTerm(String value, int distance) {
@@ -130,12 +118,8 @@ public class GraylogQuery {
 
     /**
      * Messages that have the field
-     *
-     * <pre>
-     *   exists("type") = _exists_:type
-     * </pre>
-     *
      * @param field field name
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery exists(String field) {
@@ -146,13 +130,9 @@ public class GraylogQuery {
 
     /**
      * Messages where the field includes the term or phrase
-     *
-     * <pre>
-     *   field("type", "ssh") = type:"ssh"
-     * </pre>
-     *
      * @param field field name
      * @param value term or phrase
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery field(String field, String value) {
@@ -169,13 +149,9 @@ public class GraylogQuery {
 
     /**
      * Messages where the field includes the number
-     *
-     * <pre>
-     *   field("http_response_code", 500) = http_response_code:500
-     * </pre>
-     *
      * @param field field name
      * @param value number
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery field(String field, int value) {
@@ -186,15 +162,11 @@ public class GraylogQuery {
 
     /**
      * One side unbounded range query
-     * Messages where the field satisfies the condition
-     *
-     * <pre>
-     *   field("http_response_code", ">", 500) = http_response_code:>500
-     * </pre>
-     *
+     * : Messages where the field satisfies the condition
      * @param field field name
      * @param operator range operator
      * @param value number
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery field(String field, String operator, int value) {
@@ -205,14 +177,10 @@ public class GraylogQuery {
 
     /**
      * Fuzziness with default distance
-     * Messages where the field includes similar term or phrase
-     *
-     * <pre>
-     *   fuzzField("source", "example.org") = source:"example.org"~
-     * </pre>
-     *
+     * : Messages where the field includes similar term or phrase
      * @param field field name
      * @param value number
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery fuzzField(String field, String value) {
@@ -229,15 +197,11 @@ public class GraylogQuery {
 
     /**
      * Fuzziness with custom distance
-     * Messages where the field includes similar term or phrase
-     *
-     * <pre>
-     *   fuzzField("source", "example.org", 1) = source:"example.org"~1
-     * </pre>
-     *
+     * : Messages where the field includes similar term or phrase
      * @param field field name
      * @param value number
      * @param distance Damerau-Levenshtein distance
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery fuzzField(String field, String value, int distance) {
@@ -254,18 +218,14 @@ public class GraylogQuery {
 
     /**
      * Range query
-     * Ranges in square brackets are inclusive, curly brackets are exclusive and can even be combined
-     *
-     * <pre>
-     *   range("http_response_code", "[", 500, 504, "]") = http_response_code:[500 TO 504]
-     *   range("bytes", "{", 0, 64, "]") = bytes:{0 TO 64]
-     * </pre>
-     *
+     * : Ranges in square brackets are inclusive, curly brackets are exclusive and can even be combined
      * @param field field name
      * @param fromBracket from bracket
      * @param from from number
      * @param to to number
      * @param toBracket to bracket
+     * @return GraylogQuery object
+     * @since 1.0.0
      */
     public GraylogQuery range(String field, String fromBracket, int from, int to, String toBracket) {
         queries.add(field + COLON + fromBracket + from + StringUtils.SPACE + TO + StringUtils.SPACE + to + toBracket);
@@ -275,18 +235,13 @@ public class GraylogQuery {
 
     /**
      * Date range query
-     * The dates needs to be UTC
-     *
-     * <pre>
-     *   range("timestamp", "[", "2019-07-23 09:53:08.175", "2019-07-23 09:53:08.575", "]")
-     *     = timestamp:["2019-07-23 09:53:08.175" TO "2019-07-23 09:53:08.575"]
-     * </pre>
-     *
+     * : The dates needs to be UTC
      * @param field field name
      * @param fromBracket from bracket
      * @param from from date
      * @param to to date
      * @param toBracket to bracket
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery range(String field, String fromBracket, String from, String to, String toBracket) {
@@ -300,13 +255,8 @@ public class GraylogQuery {
 
     /**
      * Raw query
-     *
-     * <pre>
-     *   raw("/ethernet[0-9]+/") = /ethernet[0-9]+/
-     *   raw("type:(ssh OR login)") = type:(ssh OR login)
-     * </pre>
-     *
      * @param raw raw Graylog query
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery raw(String raw) {
@@ -317,6 +267,7 @@ public class GraylogQuery {
 
     /**
      * NOT expression
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery not() {
@@ -327,6 +278,7 @@ public class GraylogQuery {
 
     /**
      * AND expression
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery and() {
@@ -337,6 +289,7 @@ public class GraylogQuery {
 
     /**
      * OR expression
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery or() {
@@ -347,6 +300,7 @@ public class GraylogQuery {
 
     /**
      * Open parenthesis
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery openParen() {
@@ -357,6 +311,7 @@ public class GraylogQuery {
 
     /**
      * Close parenthesis
+     * @return GraylogQuery object
      * @since 1.0.0
      */
     public GraylogQuery closeParen() {
@@ -367,6 +322,7 @@ public class GraylogQuery {
 
     /**
      * Completed Graylog query
+     * @return Completed Graylog query
      * @since 1.0.0
      */
     public String build() {
