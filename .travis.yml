@@ -1,0 +1,10 @@
+language: java
+
+sudo: false
+
+jdk:
+  - openjdk11
+
+cache:
+  directories:
+    - $HOME/.gradle
