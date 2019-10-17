@@ -225,4 +225,35 @@ public class GraylogQueryTests {
             .as("TC_017_PARENTHESES")
             .isEqualTo(expect);
     }
+
+    @Test
+    public void TC_018_PREPEND() {
+        GraylogQuery prepend = GraylogQuery.builder()
+            .not().exists("type");
+
+        GraylogQuery query = GraylogQuery.builder(prepend)
+            .and().term("ssh");
+
+        String expect = "NOT _exists_:type AND \"ssh\"";
+
+        assertThat(query.build())
+            .as("TC_018_PREPEND")
+            .isEqualTo(expect);
+    }
+
+    @Test
+    public void TC_019_APPEND() {
+        GraylogQuery append = GraylogQuery.builder()
+            .or().exists("type");
+
+        GraylogQuery query = GraylogQuery.builder()
+            .term("ssh")
+            .append(append);
+
+        String expect = "\"ssh\" OR _exists_:type";
+
+        assertThat(query.build())
+            .as("TC_019_APPEND")
+            .isEqualTo(expect);
+    }
 }
