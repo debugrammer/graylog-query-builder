@@ -204,7 +204,7 @@ Raw query.
 **Usage:**
 ```
 GraylogQuery.builder()
-    .raw("/ethernet[0-9]+/") = /ethernet[0-9]+/
+    .raw("/ethernet[0-9]+/")
     .build();
 ```
 **Output:**
