@@ -18,8 +18,10 @@ type:"ssh" AND _exists_:id AND ( source:(dog.org OR cat.org) ) AND http_response
 ```
 
 ## Building Queries
-### Basic Statements
-#### 1. Term
+
+### 1. Statements
+
+#### 1.1. Term
 Messages that include the term or phrase.
 
 **Usage**
@@ -33,10 +35,10 @@ GraylogQuery.builder()
 "ssh"
 ```
 
-#### 2. Fuzz Term
+#### 1.2. Fuzz Term
 Messages that include similar term or phrase.
 
-##### 2.1. Fuzziness with default distance
+##### 1.2.1. Fuzziness with default distance
 **Usage**
 ```
 GraylogQuery.builder()
@@ -48,7 +50,7 @@ GraylogQuery.builder()
 "ssh logni"~
 ```
 
-##### 2.2. Fuzziness with custom distance
+##### 1.2.2. Fuzziness with custom distance
 **Usage**
 ```
 GraylogQuery.builder()
@@ -60,7 +62,7 @@ GraylogQuery.builder()
 "ssh logni"~1
 ```
 
-#### 3. Exists
+#### 1.3. Exists
 Messages that have the field.
 
 **Usage**
@@ -74,9 +76,9 @@ GraylogQuery.builder()
 _exists_:type
 ```
 
-#### 4. Field
+#### 1.4. Field
 
-##### 4.1. Field (String)
+##### 1.4.1. Field (String)
 Messages where the field includes the term or phrase.
 
 **Usage**
@@ -90,7 +92,7 @@ GraylogQuery.builder()
 type:"ssh"
 ```
 
-##### 4.2. Field (Numeric)
+##### 1.4.2. Field (Numeric)
 Messages where the field includes the number.
 
 **Usage**
@@ -104,7 +106,7 @@ GraylogQuery.builder()
 http_response_code:500
 ```
 
-##### 4.3. One side unbounded range query
+##### 1.4.3. One side unbounded range query
 Messages where the field satisfies the condition.
 
 **Usage**
@@ -118,10 +120,10 @@ GraylogQuery.builder()
 http_response_code:>500
 ```
 
-#### 5. Fuzz Field
+#### 1.5. Fuzz Field
 Messages where the field includes similar term or phrase.
 
-##### 5.1. Fuzziness with default distance
+##### 1.5.1. Fuzziness with default distance
 **Usage**
 ```
 GraylogQuery.builder()
@@ -133,7 +135,7 @@ GraylogQuery.builder()
 source:"example.org"~
 ```
 
-##### 5.2. Fuzziness with custom distance
+##### 1.5.2. Fuzziness with custom distance
 **Usage**
 ```
 GraylogQuery.builder()
@@ -145,9 +147,9 @@ GraylogQuery.builder()
 source:"example.org"~1
 ```
 
-#### 6. Range
+#### 1.6. Range
 
-##### 6.1. Range query
+##### 1.6.1. Range query
 Ranges in square brackets are inclusive, curly brackets are exclusive and can even be combined.
 
 **Usage**
@@ -161,7 +163,7 @@ GraylogQuery.builder()
 bytes:{0 TO 64]
 ```
 
-##### 6.2. Date range query
+##### 1.6.2. Date range query
 The dates needs to be UTC
 
 **Usage**
@@ -175,7 +177,7 @@ GraylogQuery.builder()
 timestamp:["2019-07-23 09:53:08.175" TO "2019-07-23 09:53:08.575"]
 ```
 
-#### 6. Raw
+#### 1.6. Raw
 Raw query.
 
 **Usage**
@@ -187,4 +189,60 @@ GraylogQuery.builder()
 **Output:**
 ```
 /ethernet[0-9]+/
+```
+
+### 2. Conjunctions
+
+#### 2.1. And
+**Usage**
+```
+GraylogQuery.builder()
+    .term("ssh")
+    .and().term("login")
+    .build();
+```
+**Output:**
+```
+"ssh" AND "login"
+```
+
+#### 2.2. Or
+**Usage**
+```
+GraylogQuery.builder()
+    .term("ssh")
+    .or().term("login")
+    .build();
+```
+**Output:**
+```
+"ssh" OR "login"
+```
+
+#### 2.3. Not
+**Usage**
+```
+GraylogQuery.builder()
+    .not().exists("type")
+    .build();
+```
+**Output:**
+```
+NOT _exists_:type
+```
+
+### 3. Parentheses
+**Usage**
+```
+GraylogQuery.builder()
+    .exists("type")
+    .and().openParen()
+        .term("ssh")
+        .or().term("login")
+    .closeParen()
+    .build();
+```
+**Output:**
+```
+_exists_:type AND ( "ssh" OR "login" )
 ```
