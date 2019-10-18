@@ -60,9 +60,9 @@ public class GraylogQuery {
     }
 
     /**
-     * Messages that include the term or phrase
+     * Messages that include the term or phrase.
      * @param value term or phrase
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery term(String value) {
@@ -78,10 +78,10 @@ public class GraylogQuery {
     }
 
     /**
-     * Fuzziness with default distance
-     * : Messages that include similar term or phrase
+     * Fuzziness with default distance.
+     * Messages that include similar term or phrase.
      * @param value term or phrase
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery fuzzTerm(String value) {
@@ -97,11 +97,11 @@ public class GraylogQuery {
     }
 
     /**
-     * Fuzziness with custom distance
-     * : Messages that include similar term or phrase
+     * Fuzziness with custom distance.
+     * Messages that include similar term or phrase.
      * @param value term or phrase
      * @param distance Damerau-Levenshtein distance
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery fuzzTerm(String value, int distance) {
@@ -117,9 +117,9 @@ public class GraylogQuery {
     }
 
     /**
-     * Messages that have the field
+     * Messages that have the field.
      * @param field field name
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery exists(String field) {
@@ -129,10 +129,10 @@ public class GraylogQuery {
     }
 
     /**
-     * Messages where the field includes the term or phrase
+     * Messages where the field includes the term or phrase.
      * @param field field name
      * @param value term or phrase
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery field(String field, String value) {
@@ -148,10 +148,10 @@ public class GraylogQuery {
     }
 
     /**
-     * Messages where the field includes the number
+     * Messages where the field includes the number.
      * @param field field name
      * @param value number
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery field(String field, int value) {
@@ -161,12 +161,12 @@ public class GraylogQuery {
     }
 
     /**
-     * One side unbounded range query
-     * : Messages where the field satisfies the condition
+     * One side unbounded range query.
+     * Messages where the field satisfies the condition.
      * @param field field name
      * @param operator range operator
      * @param value number
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery field(String field, String operator, int value) {
@@ -176,11 +176,11 @@ public class GraylogQuery {
     }
 
     /**
-     * Fuzziness with default distance
-     * : Messages where the field includes similar term or phrase
+     * Fuzziness with default distance.
+     * Messages where the field includes similar term or phrase.
      * @param field field name
      * @param value number
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery fuzzField(String field, String value) {
@@ -196,12 +196,12 @@ public class GraylogQuery {
     }
 
     /**
-     * Fuzziness with custom distance
-     * : Messages where the field includes similar term or phrase
+     * Fuzziness with custom distance.
+     * Messages where the field includes similar term or phrase.
      * @param field field name
      * @param value number
      * @param distance Damerau-Levenshtein distance
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery fuzzField(String field, String value, int distance) {
@@ -217,14 +217,14 @@ public class GraylogQuery {
     }
 
     /**
-     * Range query
-     * : Ranges in square brackets are inclusive, curly brackets are exclusive and can even be combined
+     * Range query.
+     * Ranges in square brackets are inclusive, curly brackets are exclusive and can even be combined.
      * @param field field name
      * @param fromBracket from bracket
      * @param from from number
      * @param to to number
      * @param toBracket to bracket
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery range(String field, String fromBracket, int from, int to, String toBracket) {
@@ -234,14 +234,14 @@ public class GraylogQuery {
     }
 
     /**
-     * Date range query
-     * : The dates needs to be UTC
+     * Date range query.
+     * The dates needs to be UTC.
      * @param field field name
      * @param fromBracket from bracket
      * @param from from date
      * @param to to date
      * @param toBracket to bracket
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery range(String field, String fromBracket, String from, String to, String toBracket) {
@@ -254,9 +254,9 @@ public class GraylogQuery {
     }
 
     /**
-     * Raw query
+     * Raw query.
      * @param raw raw Graylog query
-     * @return GraylogQuery object
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery raw(String raw) {
@@ -266,8 +266,8 @@ public class GraylogQuery {
     }
 
     /**
-     * NOT expression
-     * @return GraylogQuery object
+     * NOT expression.
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery not() {
@@ -277,8 +277,8 @@ public class GraylogQuery {
     }
 
     /**
-     * AND expression
-     * @return GraylogQuery object
+     * AND expression.
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery and() {
@@ -288,8 +288,8 @@ public class GraylogQuery {
     }
 
     /**
-     * OR expression
-     * @return GraylogQuery object
+     * OR expression.
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery or() {
@@ -299,8 +299,8 @@ public class GraylogQuery {
     }
 
     /**
-     * Open parenthesis
-     * @return GraylogQuery object
+     * Open parenthesis.
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery openParen() {
@@ -310,8 +310,8 @@ public class GraylogQuery {
     }
 
     /**
-     * Close parenthesis
-     * @return GraylogQuery object
+     * Close parenthesis.
+     * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
     public GraylogQuery closeParen() {
@@ -321,8 +321,8 @@ public class GraylogQuery {
     }
 
     /**
-     * Completed Graylog query
-     * @return Completed Graylog query
+     * Completed Graylog query.
+     * @return completed Graylog query
      * @since 1.0.0
      */
     public String build() {
@@ -331,6 +331,10 @@ public class GraylogQuery {
         return StringUtils.join(queries, StringUtils.SPACE);
     }
 
+    /**
+     * Remove the conjunction at the end.
+     * @since 1.0.0
+     */
     private void removeEndingConj() {
         if (queries.isEmpty()) {
             return;
@@ -345,6 +349,10 @@ public class GraylogQuery {
         }
     }
 
+    /**
+     * Remove the starting conjunction.
+     * @since 1.0.0
+     */
     private void removeStartingConj() {
         if (queries.isEmpty()) {
             return;
@@ -363,6 +371,10 @@ public class GraylogQuery {
         }
     }
 
+    /**
+     * Sanitize string value.
+     * @since 1.0.0
+     */
     private String sanitize(String value) {
         if (StringUtils.isEmpty(value)) {
             return value;
@@ -371,6 +383,10 @@ public class GraylogQuery {
         return "\"" + escape(value) + "\"";
     }
 
+    /**
+     * Escape input text as specified on Graylog docs.
+     * @since 1.0.0
+     */
     private String escape(String input) {
         final String[] metaCharacters = {
             "&", "|", ":", "\\", "/", "+", "-", "!", "(", ")", "{", "}", "[", "]", "^", "\"", "~", "*", "?"

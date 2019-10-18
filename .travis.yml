@@ -3,6 +3,7 @@ language: java
 sudo: false
 
 jdk:
+  - oraclejdk11
   - openjdk11
 
 cache:
