@@ -366,7 +366,7 @@ public class GraylogQuery {
             queries.remove(firstIndex);
         }
 
-        if (queries.size() == 1 && firstQuery.contains(NOT)) {
+        if (queries.size() == 1 && firstQuery.equals(NOT)) {
             queries.remove(firstIndex);
         }
     }
