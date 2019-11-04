@@ -179,7 +179,7 @@ public class GraylogQuery {
      * Fuzziness with default distance.
      * Messages where the field includes similar term or phrase.
      * @param field field name
-     * @param value number
+     * @param value term or phrase
      * @return GraylogQuery - used to chain calls
      * @since 1.0.0
      */
@@ -199,7 +199,7 @@ public class GraylogQuery {
      * Fuzziness with custom distance.
      * Messages where the field includes similar term or phrase.
      * @param field field name
-     * @param value number
+     * @param value term or phrase
      * @param distance Damerau-Levenshtein distance
      * @return GraylogQuery - used to chain calls
      * @since 1.0.0
