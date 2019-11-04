@@ -393,9 +393,7 @@ public class GraylogQuery {
         };
 
         for (String meta: metaCharacters) {
-            if (input.contains(meta)) {
-                input = input.replace(meta, "\\" + meta);
-            }
+            input = input.replace(meta, "\\" + meta);
         }
 
         return input;

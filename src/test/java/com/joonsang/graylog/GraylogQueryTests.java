@@ -256,4 +256,18 @@ public class GraylogQueryTests {
             .as("TC_019_APPEND")
             .isEqualTo(expect);
     }
+
+    @Test
+    public void TC_020_ESCAPING() {
+        GraylogQuery query = GraylogQuery.builder()
+            .field("content_type", "application/json")
+            .and()
+            .field("response_body", "{\"nickname\": \"[*test] John Doe\", \"message\": \"hello?\"}");
+
+        String expect = "content_type:\"application\\/json\" AND response_body:\"\\{\\\"nickname\\\"\\\\: \\\"\\[\\*test\\] John Doe\\\", \\\"message\\\"\\\\: \\\"hello\\?\\\"\\}\"";
+
+        assertThat(query.build())
+            .as("TC_020_SANITIZE")
+            .isEqualTo(expect);
+    }
 }
