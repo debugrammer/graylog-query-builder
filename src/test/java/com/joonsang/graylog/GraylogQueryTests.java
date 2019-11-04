@@ -264,7 +264,7 @@ public class GraylogQueryTests {
             .and()
             .field("response_body", "{\"nickname\": \"[*test] John Doe\", \"message\": \"hello?\"}");
 
-        String expect = "content_type:\"application\\/json\" AND response_body:\"\\{\\\"nickname\\\"\\\\: \\\"\\[\\*test\\] John Doe\\\", \\\"message\\\"\\\\: \\\"hello\\?\\\"\\}\"";
+        String expect = "content_type:\"application\\/json\" AND response_body:\"\\{\\\"nickname\\\"\\: \\\"\\[\\*test\\] John Doe\\\", \\\"message\\\"\\: \\\"hello\\?\\\"\\}\"";
 
         assertThat(query.build())
             .as("TC_020_SANITIZE")

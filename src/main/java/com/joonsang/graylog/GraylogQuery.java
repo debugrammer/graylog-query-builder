@@ -389,7 +389,7 @@ public class GraylogQuery {
      */
     private String escape(String input) {
         final String[] metaCharacters = {
-            "&", "|", ":", "\\", "/", "+", "-", "!", "(", ")", "{", "}", "[", "]", "^", "\"", "~", "*", "?"
+            "\\", "&", "|", ":", "/", "+", "-", "!", "(", ")", "{", "}", "[", "]", "^", "\"", "~", "*", "?"
         };
 
         for (String meta: metaCharacters) {
