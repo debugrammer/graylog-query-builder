@@ -13,13 +13,13 @@ Graylog Query Builder is available at the Central Maven Repository.
 <dependency>
   <groupId>com.joonsang.graylog</groupId>
   <artifactId>graylog-query-builder</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
 **Gradle**
 ```
-implementation group: 'com.joonsang.graylog', name: 'graylog-query-builder', version: '1.0.1'
+implementation group: 'com.joonsang.graylog', name: 'graylog-query-builder', version: '1.0.2'
 ```
 
 ## Usage
