@@ -301,3 +301,8 @@ GraylogQuery.builder()
 ```
 "ssh" OR _exists_:type
 ```
+
+## Ports
+There are other versions of the Graylog Query Builder library.
+* JavaScript: https://github.com/debugrammer/js-graylog-query-builder
+* PHP: https://github.com/debugrammer/php-graylog-query-builder
