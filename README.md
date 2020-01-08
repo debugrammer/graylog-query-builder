@@ -185,7 +185,7 @@ bytes:{0 TO 64]
 ```
 
 ##### 1.6.2. Date range query
-The dates needs to be UTC
+The dates needs to be UTC.
 
 **Usage:**
 ```
@@ -301,3 +301,8 @@ GraylogQuery.builder()
 ```
 "ssh" OR _exists_:type
 ```
+
+## Ports
+There are other versions of the Graylog Query Builder library.
+* JavaScript: https://github.com/debugrammer/js-graylog-query-builder
+* PHP: https://github.com/debugrammer/php-graylog-query-builder
