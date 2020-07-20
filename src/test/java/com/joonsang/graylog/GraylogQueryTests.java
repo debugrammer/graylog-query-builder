@@ -1,183 +1,152 @@
 package com.joonsang.graylog;
 
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GraylogQueryTests {
 
     @Test
-    public void TC_001_INIT() {
+    void init() {
         GraylogQuery query = GraylogQuery.builder();
 
         String expect = "";
 
-        assertThat(query.build())
-            .as("TC_001_INIT")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_002_TERM() {
+    void term() {
         GraylogQuery query = GraylogQuery.builder()
             .term("ssh");
 
         String expect = "\"ssh\"";
 
-        assertThat(query.build())
-            .as("TC_002_TERM")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_003_FUZZ_TERM() {
+    void fuzzTerm() {
         GraylogQuery query = GraylogQuery.builder()
             .fuzzTerm("ssh");
 
         String expect = "\"ssh\"~";
 
-        assertThat(query.build())
-            .as("TC_003_FUZZ_TERM")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_004_FUZZ_TERM_WITH_DISTANCE() {
+    void fuzzTermWithDistance() {
         GraylogQuery query = GraylogQuery.builder()
             .fuzzTerm("ssh", 3);
 
         String expect = "\"ssh\"~3";
 
-        assertThat(query.build())
-            .as("TC_004_FUZZ_TERM_WITH_DISTANCE")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_005_EXISTS() {
+    void exists() {
         GraylogQuery query = GraylogQuery.builder()
             .exists("type");
 
         String expect = "_exists_:type";
 
-        assertThat(query.build())
-            .as("TC_005_EXISTS")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_006_FIELD() {
+    void field() {
         GraylogQuery query = GraylogQuery.builder()
             .field("type", "ssh");
 
         String expect = "type:\"ssh\"";
 
-        assertThat(query.build())
-            .as("TC_006_FIELD")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_007_NUMERIC_FIELD() {
+    void numericField() {
         GraylogQuery query = GraylogQuery.builder()
             .field("http_response_code", 500);
 
         String expect = "http_response_code:500";
 
-        assertThat(query.build())
-            .as("TC_007_NUMERIC_FIELD")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_008_RANGE_FIELD() {
+    void rangeField() {
         GraylogQuery query = GraylogQuery.builder()
             .field("http_response_code", ">", 500);
 
         String expect = "http_response_code:>500";
 
-        assertThat(query.build())
-            .as("TC_008_RANGE_FIELD")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_009_FUZZ_FIELD() {
+    void fuzzField() {
         GraylogQuery query = GraylogQuery.builder()
             .fuzzField("type", "ssh");
 
         String expect = "type:\"ssh\"~";
 
-        assertThat(query.build())
-            .as("TC_009_FUZZ_FIELD")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_010_FUZZ_FIELD_WITH_DISTANCE() {
+    void fuzzFieldWithDistance() {
         GraylogQuery query = GraylogQuery.builder()
             .fuzzField("type", "ssh", 3);
 
         String expect = "type:\"ssh\"~3";
 
-        assertThat(query.build())
-            .as("TC_010_FUZZ_FIELD_WITH_DISTANCE")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_011_RANGE() {
+    void range() {
         GraylogQuery query = GraylogQuery.builder()
             .range("http_response_code", "[", 500, 504, "}");
 
         String expect = "http_response_code:[500 TO 504}";
 
-        assertThat(query.build())
-                .as("TC_011_RANGE")
-                .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_012_DATE_RANGE() {
+    void dateRange() {
         GraylogQuery query = GraylogQuery.builder()
             .range("timestamp", "{", "2019-07-23 09:53:08.175", "2019-07-23 09:53:08.575", "]");
 
         String expect = "timestamp:{\"2019-07-23 09:53:08.175\" TO \"2019-07-23 09:53:08.575\"]";
 
-        assertThat(query.build())
-            .as("TC_012_DATE_RANGE")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_013_RAW() {
+    void raw() {
         GraylogQuery query = GraylogQuery.builder()
             .raw("/ethernet[0-9]+/");
 
         String expect = "/ethernet[0-9]+/";
 
-        assertThat(query.build())
-            .as("TC_013_RAW")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_014_NOT() {
+    void not() {
         GraylogQuery query = GraylogQuery.builder()
             .not().exists("type");
 
         String expect = "NOT _exists_:type";
 
-        assertThat(query.build())
-            .as("TC_014_NOT")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_015_AND() {
+    void and() {
         GraylogQuery query = GraylogQuery.builder()
             .term("cat")
             .and()
@@ -185,13 +154,11 @@ public class GraylogQueryTests {
 
         String expect = "\"cat\" AND \"dog\"";
 
-        assertThat(query.build())
-            .as("TC_015_AND")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_016_OR() {
+    void or() {
         GraylogQuery query = GraylogQuery.builder()
             .term("cat")
             .or()
@@ -199,13 +166,11 @@ public class GraylogQueryTests {
 
         String expect = "\"cat\" OR \"dog\"";
 
-        assertThat(query.build())
-            .as("TC_016_OR")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_017_PARENTHESES() {
+    void parentheses() {
         GraylogQuery query = GraylogQuery.builder()
             .openParen()
                 .term("ssh login")
@@ -221,13 +186,11 @@ public class GraylogQueryTests {
 
         String expect = "( \"ssh login\" AND ( source:\"example.org\" OR source:\"another.example.org\" ) ) OR _exists_:always_find_me";
 
-        assertThat(query.build())
-            .as("TC_017_PARENTHESES")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_018_PREPEND() {
+    void prepend() {
         GraylogQuery prepend = GraylogQuery.builder()
             .not().exists("type");
 
@@ -236,13 +199,11 @@ public class GraylogQueryTests {
 
         String expect = "NOT _exists_:type AND \"ssh\"";
 
-        assertThat(query.build())
-            .as("TC_018_PREPEND")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_019_APPEND() {
+    void append() {
         GraylogQuery append = GraylogQuery.builder()
             .or().exists("type");
 
@@ -252,13 +213,11 @@ public class GraylogQueryTests {
 
         String expect = "\"ssh\" OR _exists_:type";
 
-        assertThat(query.build())
-            .as("TC_019_APPEND")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 
     @Test
-    public void TC_020_ESCAPING() {
+    void escaping() {
         GraylogQuery query = GraylogQuery.builder()
             .field("content_type", "application/json")
             .and()
@@ -266,8 +225,6 @@ public class GraylogQueryTests {
 
         String expect = "content_type:\"application\\/json\" AND response_body:\"\\{\\\"nickname\\\"\\: \\\"\\[\\*test\\] John Doe\\\", \\\"message\\\"\\: \\\"hello\\?\\\"\\}\"";
 
-        assertThat(query.build())
-            .as("TC_020_SANITIZE")
-            .isEqualTo(expect);
+        assertThat(query.build()).isEqualTo(expect);
     }
 }
