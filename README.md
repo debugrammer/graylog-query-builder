@@ -3,7 +3,7 @@
 
 [![Build Status](https://app.travis-ci.com/debugrammer/graylog-query-builder.svg?branch=master)](https://app.travis-ci.com/github/debugrammer/graylog-query-builder)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.joonsang.graylog/graylog-query-builder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.joonsang.graylog/graylog-query-builder)
-[![Javadoc](https://javadoc-badge.appspot.com/com.joonsang.graylog/graylog-query-builder.svg?label=javadoc)](https://javadoc-badge.appspot.com/com.joonsang.graylog/graylog-query-builder)
+[![javadoc](https://javadoc.io/badge2/com.joonsang.graylog/graylog-query-builder/javadoc.svg)](https://javadoc.io/doc/com.joonsang.graylog/graylog-query-builder)
 
 ## Getting Started
 Graylog Query Builder is available at the Central Maven Repository.
